@@ -1,0 +1,114 @@
+package com.example.myapplication;
+//Finish vendor registration logic
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Button;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+import com.example.myapplication.users.User;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
+
+import java.util.function.Function;
+
+public class VendorRegistration extends AppCompatActivity {
+    /*fix varaibles within VendorRegistration and complete registration logic.
+    considering creating a database table the stores vendors and services they provide
+    really just try to ge to service request logic
+     */
+    TextInputLayout vendor_name_l;
+    TextInputEditText vendor_name_TI;
+    TextInputLayout vendor_email_l;
+    TextInputEditText vendor_email_TI;
+    TextInputLayout vendor_password_l;
+    TextInputEditText vendor_password_TI;
+    TextInputLayout vendor_phone_l;
+    TextInputEditText vendor_phone_TI;
+    TextInputLayout vendor_address_l;
+    TextInputEditText vendor_address_TI;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_vendor_registration);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
+        //Setting the fields of this class to the id's of the things they represent
+        vendor_name_l = findViewById(R.id.vendor_name_layout);
+        vendor_name_TI = findViewById(R.id.vendor_name_TextInput);
+        vendor_email_l = findViewById(R.id.vendor_email_layout);
+        vendor_email_TI = findViewById(R.id.vendor_email_TextInput);
+        vendor_password_l = findViewById(R.id.vendor_password_layout);
+        vendor_password_TI = findViewById(R.id.vendor_password_TextInput);
+        vendor_phone_l = findViewById(R.id.vendor_phone_layout);
+        vendor_phone_TI = findViewById(R.id.vendor_phone_TextInput);
+        vendor_address_l = findViewById(R.id.vendor_address_layout);
+        vendor_address_TI = findViewById(R.id.vendor_address_TextInput);
+
+
+        //these validate the users input as they go from one text box to another
+        attachValidation(vendor_name_TI, vendor_name_l, User::validateName, "Invalid First name");
+        attachValidation( vendor_email_TI,vendor_email_l, User::validateName, "Invalid Last name");
+        attachValidation(vendor_password_TI, vendor_password_l, User::validateEmail, "Invalid Email");
+        attachValidation(vendor_phone_TI, vendor_password_l, User::validateName, "Invalid Password");
+        attachValidation(vendor_address_TI,vendor_address_l,User::validateNumber,"Invalid Phone Number");
+
+        Button register = findViewById(R.id.register_button_vendor);
+
+        register.setOnClickListener(v ->
+        {
+            boolean validFirstName = finalValidation(vendor_name_TI, vendor_name_l, User::validateName, "Invalid First Name");
+            boolean validLastName = finalValidation(vendor_email_TI, vendor_email_l, User::validateName, "Invalid Last name");
+            boolean validEmail = finalValidation(vendor_password_TI, vendor_password_l, User::validateEmail, "Invalid Email");
+            boolean validPassword = finalValidation(vendor_phone_TI, vendor_phone_l, User::validateName, "Invalid Password");
+            boolean validNumber = finalValidation(vendor_address_TI, vendor_address_l, User::validateNumber, "Invalid Phone Number");
+
+            if (validFirstName && validLastName && validEmail && validPassword && validNumber)
+            {
+                User activeUser = new User(vendor_name_TI.getText().toString(),null,
+                        vendor_email_TI.getText().toString(), vendor_password_TI.getText().toString(),
+                        1,vendor_phone_TI.getText().toString(),vendor_phone_TI.getText().toString());
+                Intent intent = new Intent(VendorRegistration.this, UserHomePage.class);
+                intent.putExtra("user", activeUser);
+                startActivity(intent);
+            }
+        });
+
+    }
+
+    void attachValidation(TextInputEditText editText, TextInputLayout layout, Function<String, Boolean> validator, String errorMessage) {
+        editText.setOnFocusChangeListener((v, hasFocus) -> {
+            if (!hasFocus) {
+                String value = editText.getText().toString();
+
+                if (!validator.apply(value)) {
+                    layout.setError(errorMessage);
+                } else {
+                    layout.setError(null);
+                }
+            }
+        });
+    }
+
+    boolean finalValidation(TextInputEditText editText, TextInputLayout layout, Function<String, Boolean> validator, String errorMessage)
+    {
+        String value = editText.getText() != null ? editText.getText().toString().trim() : "";
+
+        if (!validator.apply(value)) {
+            layout.setError(errorMessage);
+            return false;
+        } else {
+            layout.setError(null);
+            return true;
+        }
+    }
+}

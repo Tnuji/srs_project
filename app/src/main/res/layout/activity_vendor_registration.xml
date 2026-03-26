@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".VendorRegistration">
+
+    <TextView
+        android:id="@+id/create_accountV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-650dp"
+        android:text="CREATE ACCOUNT"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/below_create_accountV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-650dp"
+        android:text="Create an account to start providing services!"
+        android:textAlignment="center"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/create_accountV"
+        app:layout_constraintBottom_toTopOf="@id/vendor_name_layout"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style = "@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:id="@+id/vendor_name_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Name"
+        app:layout_constraintBottom_toTopOf="@id/vendor_email_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/below_create_accountV">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/vendor_name_TextInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style = "@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:id="@+id/vendor_email_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Email"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vendor_name_layout"
+        app:layout_constraintBottom_toTopOf="@id/vendor_password_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/vendor_email_TextInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style = "@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:id="@+id/vendor_password_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vendor_email_layout"
+        app:layout_constraintBottom_toTopOf="@id/vendor_phone_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/vendor_password_TextInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style = "@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:id="@+id/vendor_phone_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Phone Number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vendor_password_layout"
+        app:layout_constraintBottom_toTopOf="@id/vendor_address_layout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/vendor_phone_TextInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        style = "@style/Widget.Material3.TextInputLayout.OutlinedBox"
+        android:id="@+id/vendor_address_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="32dp"
+        android:hint="Address"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vendor_phone_layout"
+        app:layout_constraintBottom_toTopOf="@id/vendor_sms">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/vendor_address_TextInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Switch
+        android:id="@+id/vendor_sms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:text="Recieve SMS offers and promotions?"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vendor_address_layout"
+        app:layout_constraintBottom_toTopOf="@id/terms_vendor"/>
+
+    <Switch
+        android:id="@+id/terms_vendor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/agree_terms"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vendor_sms"
+        app:layout_constraintBottom_toTopOf="@id/vendor_terms_paragraph"/>
+
+    <TextView
+        android:id="@+id/vendor_terms_paragraph"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:text="By registering as a vendor, you agree to provide accurate contact information (including phone, address, and email), offer services in your selected categories in a professional manner, and, if provided, ensure any sample rates are fair and not misleading. You also agree to pay the platform a service fee (e.g., 20%) of all earnings received through the app. Failure to follow these terms may result in removal from the platform."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/terms_vendor"
+        app:layout_constraintBottom_toTopOf="@id/register_button_vendor"/>
+
+    <Button
+        android:id="@+id/register_button_vendor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/register_button"
+        android:textSize="20sp"
+        android:backgroundTint="#1565c0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

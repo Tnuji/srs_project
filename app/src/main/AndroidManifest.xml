@@ -12,6 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".VendorOrCustomer"
+            android:exported="false" />
+        <activity
+            android:name=".VendorRegistration"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerRegistration"
+            android:exported="false" />
+        <activity
+            android:name=".UserHomePage"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
