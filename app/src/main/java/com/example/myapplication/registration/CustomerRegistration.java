@@ -1,11 +1,8 @@
-package com.example.myapplication;
+package com.example.myapplication.registration;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.Layout;
 import android.widget.Button;
-import android.widget.EditText;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,12 +10,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.myapplication.R;
+import com.example.myapplication.UserHomePage;
 import com.example.myapplication.users.User;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.function.Function;
-import com.example.myapplication.users.User;
 
 public class CustomerRegistration extends AppCompatActivity {
 

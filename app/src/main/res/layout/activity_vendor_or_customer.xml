@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/login_background"
     android:textAlignment="center"
-    tools:context=".VendorOrCustomer">
+    tools:context=".registration.VendorOrCustomer">
 
     <Button
         android:id="@+id/vendor_button"

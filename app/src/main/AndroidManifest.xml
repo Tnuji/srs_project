@@ -12,19 +12,33 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".VendorOrCustomer"
+            android:name=".VendorService"
             android:exported="false" />
         <activity
-            android:name=".VendorRegistration"
+            android:name=".VendorServices"
             android:exported="false" />
         <activity
-            android:name=".CustomerRegistration"
+            android:name=".testbottomnav"
+            android:exported="false"
+            android:label="@string/title_activity_testbottomnav"
+            android:theme="@style/Theme.MyApplication" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
+            android:name=".registration.VendorOrCustomer"
+            android:exported="false" />
+        <activity
+            android:name=".registration.VendorRegistration"
+            android:exported="false" />
+        <activity
+            android:name=".registration.CustomerRegistration"
             android:exported="false" />
         <activity
             android:name=".UserHomePage"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Homepage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

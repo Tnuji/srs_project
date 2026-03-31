@@ -13,7 +13,7 @@ import com.example.myapplication.users.User;
 
 public class DBhelper extends SQLiteOpenHelper //Sqlite must be a class and you must extend it.
 {
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 3;
     public DBhelper(Context context) //db helper constructor
     {
         super(context, "srs.db", null, DATABASE_VERSION); //similar to what ive been seeing in databases.
@@ -29,9 +29,34 @@ public class DBhelper extends SQLiteOpenHelper //Sqlite must be a class and you 
         users.append("role INTEGER,");
         users.append("password TEXT,");users.append("first_name TEXT,");
         users.append("last_name TEXT,");users.append("email TEXT UNIQUE,");
-        users.append("address TEXT,"); users.append("phone INTEGER)");//users.append("role INTEGER)");
+        users.append("address TEXT,"); users.append("phone INTEGER)");
 
         db.execSQL(users.toString());
+
+        StringBuilder vendors = new StringBuilder();
+        users.append("CREATE TABLE vendors (");
+        users.append("user_id INTEGER PRIMARY KEY,");
+        users.append("business_name TEXT,");
+        users.append("description TEXT,");
+        users.append("service TEXT,");
+        users.append("FOREIGN KEY(user_id) REFERENCES users(user_id) ON DELETE CASCADE)");
+
+        db.execSQL(users.toString());
+
+        StringBuilder serviceRequests = new StringBuilder();
+        serviceRequests.append("CREATE TABLE service_requests (");
+        serviceRequests.append("service_request_id INTEGER PRIMARY KEY AUTOINCREMENT,");
+        serviceRequests.append("service TEXT,");
+        serviceRequests.append("date TEXT,");
+        serviceRequests.append("price REAL,");
+        serviceRequests.append("status INTEGER,");
+        serviceRequests.append("vendor_id INTEGER,");
+        serviceRequests.append("customer_id INTEGER,");
+        serviceRequests.append("FOREIGN KEY(vendor_id) REFERENCES vendors(user_id) ON DELETE CASCADE,");
+        serviceRequests.append("FOREIGN KEY(customer_id) REFERENCES users(user_id) ON DELETE CASCADE)");
+
+        db.execSQL(serviceRequests.toString());
+
     }
 
     /*Still unsure about this method, seems to be just about making certain types of changes

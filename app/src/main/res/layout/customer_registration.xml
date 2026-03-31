@@ -5,7 +5,7 @@
     android:id="@+id/customer_registration"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CustomerRegistration">
+    tools:context=".registration.CustomerRegistration">
 
     <TextView
         android:id="@+id/create_account"

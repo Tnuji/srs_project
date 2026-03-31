@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication.registration.VendorOrCustomer;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override

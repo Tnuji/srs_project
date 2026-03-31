@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.registration;
 //Finish vendor registration logic
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,8 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.myapplication.R;
+import com.example.myapplication.UserHomePage;
 import com.example.myapplication.users.User;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
