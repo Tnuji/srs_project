@@ -1,0 +1,30 @@
+March 30
+    I addded some new things to the database (vendor and service request)
+    created two new classes, vendor and service request.
+    Current home page looks good, i'll get opinions later.
+    Added service request selection for vendors.
+    next:
+        complete the vendor registration flow
+        select services and then instance a vendor for each service they select
+        from there, complete the passsing of new registered people into the database.
+        after that test with different prints.
+March 31
+    Found a picture to use for the vendor homepage
+    finished up the vendor service and almost completed registration flow.
+    next:
+        finish up registration flow and vendor services via a hashmap.
+
+April 8
+    things I still have to do
+        add vendors to the database = done
+        work on all back arrow buttons
+        work on the myorders and user pages
+        add serviceRequest to the database = done
+April 11
+    things I still have to do
+        work on all back arrow buttons
+        work on myorders and user pages
+        comments and reviews
+        forget password.
+        guest
+

@@ -10,8 +10,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.myapplication.DBhelper;
+import com.example.myapplication.Homepage;
 import com.example.myapplication.R;
-import com.example.myapplication.UserHomePage;
+//import com.example.myapplication.UserHomePage;
 import com.example.myapplication.users.User;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -79,12 +81,18 @@ public class CustomerRegistration extends AppCompatActivity {
 
             if (validFirstName && validLastName && validEmail && validPassword && validNumber)
             {
+                DBhelper db = new DBhelper(this);
+
                 User activeUser = new User(firstName_EditText.getText().toString(),lastName_EditText.getText().toString(),
                                         email_EditText.getText().toString(),password_EditText.getText().toString(),
                                         1,phoneNumber_EditText.getText().toString(),null);
-                Intent intent = new Intent(CustomerRegistration.this, UserHomePage.class);
+                Intent intent = new Intent(CustomerRegistration.this, Homepage.class);
                 intent.putExtra("user", activeUser);
-                startActivity(intent);
+                long userid = db.addUser(activeUser);
+                if (userid != -1) {
+                    activeUser.setUserID(userid);
+                    startActivity(intent);
+                }
             }
         });
 

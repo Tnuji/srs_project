@@ -11,7 +11,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.example.myapplication.R;
-import com.example.myapplication.UserHomePage;
 import com.example.myapplication.users.User;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -38,7 +37,7 @@ public class VendorRegistration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_vendor_registration);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.vendor_registration), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -58,28 +57,28 @@ public class VendorRegistration extends AppCompatActivity {
 
 
         //these validate the users input as they go from one text box to another
-        attachValidation(vendor_name_TI, vendor_name_l, User::validateName, "Invalid First name");
-        attachValidation( vendor_email_TI,vendor_email_l, User::validateName, "Invalid Last name");
-        attachValidation(vendor_password_TI, vendor_password_l, User::validateEmail, "Invalid Email");
-        attachValidation(vendor_phone_TI, vendor_password_l, User::validateName, "Invalid Password");
-        attachValidation(vendor_address_TI,vendor_address_l,User::validateNumber,"Invalid Phone Number");
+        attachValidation(vendor_name_TI, vendor_name_l, User::validateName, "Invalid Business Name");
+        attachValidation( vendor_email_TI,vendor_email_l, User::validateEmail, "Invalid Email");
+        attachValidation(vendor_password_TI, vendor_password_l, User::validateName, "Invalid Password");
+        attachValidation(vendor_phone_TI, vendor_phone_l, User::validateName, "Invalid Phone Number");
+        attachValidation(vendor_address_TI,vendor_address_l,User::validateNumber,"Invalid Address");
 
-        Button register = findViewById(R.id.register_button_vendor);
+        Button register = findViewById(R.id.register_next_vendor);
 
         register.setOnClickListener(v ->
         {
-            boolean validFirstName = finalValidation(vendor_name_TI, vendor_name_l, User::validateName, "Invalid First Name");
-            boolean validLastName = finalValidation(vendor_email_TI, vendor_email_l, User::validateName, "Invalid Last name");
-            boolean validEmail = finalValidation(vendor_password_TI, vendor_password_l, User::validateEmail, "Invalid Email");
-            boolean validPassword = finalValidation(vendor_phone_TI, vendor_phone_l, User::validateName, "Invalid Password");
-            boolean validNumber = finalValidation(vendor_address_TI, vendor_address_l, User::validateNumber, "Invalid Phone Number");
+            boolean validFirstName = finalValidation(vendor_name_TI, vendor_name_l, User::validateName, "Business Name");
+            boolean validLastName = finalValidation(vendor_email_TI, vendor_email_l, User::validateEmail, "Invalid Email");
+            boolean validEmail = finalValidation(vendor_password_TI, vendor_password_l, User::validateName, "Invalid Password");
+            boolean validPassword = finalValidation(vendor_phone_TI, vendor_phone_l, User::validateName, "Invalid Phone Number");
+            boolean validNumber = finalValidation(vendor_address_TI, vendor_address_l, User::validateNumber, "Invalid Address");
 
             if (validFirstName && validLastName && validEmail && validPassword && validNumber)
             {
                 User activeUser = new User(vendor_name_TI.getText().toString(),null,
                         vendor_email_TI.getText().toString(), vendor_password_TI.getText().toString(),
-                        1,vendor_phone_TI.getText().toString(),vendor_phone_TI.getText().toString());
-                Intent intent = new Intent(VendorRegistration.this, UserHomePage.class);
+                        2,vendor_phone_TI.getText().toString(),vendor_phone_TI.getText().toString());
+                Intent intent = new Intent(VendorRegistration.this, VendorService.class);
                 intent.putExtra("user", activeUser);
                 startActivity(intent);
             }

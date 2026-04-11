@@ -2,10 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/vendor_service"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VendorService">
+    tools:context=".registration.VendorService">
 
     <TextView
         android:id="@+id/textView8"
@@ -24,121 +24,131 @@
 
     <Switch
         android:id="@+id/appliances_switch"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        android:layout_marginEnd="220dp"
         android:text="Appliances"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@id/electrical_switch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
-        app:layout_constraintBottom_toTopOf="@id/electrical_switch"/>
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <Switch
         android:id="@+id/electrical_switch"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        android:layout_marginEnd="230dp"
         android:text="Electrical"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@id/plumbing_switch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appliances_switch"
-        app:layout_constraintBottom_toTopOf="plumbing_switch"/>
+        app:layout_constraintTop_toBottomOf="@+id/appliances_switch" />
 
     <Switch
         android:id="@+id/plumbing_switch"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="230dp"
         android:text="Plumbing"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@id/plumbing_switch"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/electrical_switch"
-        app:layout_constraintBottom_toTopOf="homeCleaning_switch"/>
+        app:layout_constraintTop_toBottomOf="@+id/electrical_switch" />
 
     <Switch
         android:id="@+id/homeCleaning_switch"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        android:layout_marginEnd="180dp"
         android:text="Home Cleaning"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@id/tutoring_switch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/plumbing_switch"
-        app:layout_constraintBottom_toTopOf="@id/tutoring_switch"/>
+        app:layout_constraintTop_toBottomOf="@+id/plumbing_switch" />
 
     <Switch
         android:id="@+id/tutoring_switch"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        android:layout_marginEnd="250dp"
         android:text="Tutoring"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@+id/packagingAndMoving_switch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/homeCleaning_switch"
-        app:layout_constraintBottom_toTopOf="@+id/packagingAndMoving_switch"/>
+        app:layout_constraintTop_toBottomOf="@+id/homeCleaning_switch" />
 
     <Switch
         android:id="@+id/packagingAndMoving_switch"
-        android:layout_width="300dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        android:layout_marginEnd="220dp"
         android:text="Packaging and Moving"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@id/computerRepair_switch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tutoring_switch"
-        app:layout_constraintBottom_toTopOf="@id/computerRepair_switch"/>
+        app:layout_constraintTop_toBottomOf="@+id/tutoring_switch" />
 
     <Switch
         android:id="@+id/computerRepair_switch"
-        android:layout_width="300dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        android:layout_marginEnd="160dp"
         android:text="Computer Repair"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@id/homeRepair_switch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/packagingAndMoving_switch"
-        app:layout_constraintBottom_toTopOf="@id/homeRepair_switch"/>
+        app:layout_constraintTop_toBottomOf="@+id/packagingAndMoving_switch" />
 
     <Switch
         android:id="@+id/homeRepair_switch"
-        android:layout_width="300dp"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        android:layout_marginEnd="200dp"
         android:text="Home Repair and Painting"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold|italic"
+        app:layout_constraintBottom_toTopOf="@id/pestControl_switch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/computerRepair_switch"
-        app:layout_constraintBottom_toTopOf="@id/pestControl_switch"/>
+        app:layout_constraintTop_toBottomOf="@+id/computerRepair_switch" />
 
     <Switch
         android:id="@+id/pestControl_switch"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="41dp"
         android:layout_marginTop="25dp"
+        android:layout_marginEnd="200dp"
         android:text="Pest Control"
         android:textAlignment="center"
         android:textSize="24sp"
@@ -149,7 +159,7 @@
 
     <Button
         android:id="@+id/vendor_register_button"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="-20dp"
         android:backgroundTint="#1565c0"
@@ -159,7 +169,153 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/customer_terms_paragraph" />
+        app:layout_constraintTop_toBottomOf="@+id/pestControl_switch" />
+
+    <EditText
+        android:id="@+id/electrical_price"
+        android:layout_width="150dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="$$Price"
+        android:inputType="numberDecimal"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/plumbing_price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/electrical_switch"
+        app:layout_constraintTop_toBottomOf="@+id/appliances_price" />
+
+    <EditText
+        android:id="@+id/plumbing_price"
+        android:layout_width="150dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="19dp"
+        android:ems="10"
+        android:hint="$$Price"
+        android:inputType="numberDecimal"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/homeCleaning_price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/plumbing_switch"
+        app:layout_constraintTop_toBottomOf="@+id/electrical_price" />
+
+    <EditText
+        android:id="@+id/homeCleaning_price"
+        android:layout_width="150dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="$$Price"
+        android:inputType="numberDecimal"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/tutoring_price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/homeCleaning_switch"
+        app:layout_constraintTop_toBottomOf="@+id/plumbing_price" />
+
+    <EditText
+        android:id="@+id/tutoring_price"
+        android:layout_width="150dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="$$Price"
+        android:inputType="numberDecimal"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/packaging_price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tutoring_switch"
+        app:layout_constraintTop_toBottomOf="@+id/homeCleaning_price" />
+
+    <EditText
+        android:id="@+id/packaging_price"
+        android:layout_width="150dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="$$Price"
+        android:inputType="numberDecimal"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/computerRepair_price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/packagingAndMoving_switch"
+        app:layout_constraintTop_toBottomOf="@+id/tutoring_price" />
+
+    <EditText
+        android:id="@+id/computerRepair_price"
+        android:layout_width="150dp"
+        android:layout_height="41dp"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="$$Price"
+        android:inputType="numberDecimal"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/homeRepair_price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/computerRepair_switch"
+        app:layout_constraintTop_toBottomOf="@+id/packaging_price" />
+
+    <EditText
+        android:id="@+id/homeRepair_price"
+        android:layout_width="150dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="25dp"
+        android:ems="10"
+        android:hint="$$Price"
+        android:inputType="numberDecimal"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/pestControl_price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/homeRepair_switch"
+        app:layout_constraintTop_toBottomOf="@+id/computerRepair_price" />
+
+    <EditText
+        android:id="@+id/pestControl_price"
+        android:layout_width="150dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="5dp"
+        android:ems="10"
+        android:hint="$$Price"
+        android:inputType="numberDecimal"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/vendor_register_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/pestControl_switch"
+        app:layout_constraintTop_toBottomOf="@+id/homeRepair_price" />
+
+    <EditText
+        android:id="@+id/appliances_price"
+        android:layout_width="150dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="25dp"
+        android:cursorVisible="false"
+        android:ems="10"
+        android:hint="$$Price"
+        android:inputType="numberDecimal"
+        android:textSize="16sp"
+        android:textStyle="bold|italic"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@id/electrical_price"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/appliances_switch"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,16 +9,17 @@ import androidx.annotation.NonNull;
 public class User implements Parcelable
 {
 
+    protected long userID;
     protected String firstName;
     protected String lastName;
     protected String password;
     protected String email;
     protected String phoneNumber;
-    protected int role;
+    protected long role;
     protected String address;
 
 
-    public User(String firstName, String lastName, String email, String password, int role, String phoneNumber, String address)
+    public User(String firstName, String lastName, String email, String password, long role, String phoneNumber, String address)
     {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -35,7 +36,7 @@ public class User implements Parcelable
         password = in.readString();
         email = in.readString();
         phoneNumber = in.readString();
-        role = in.readInt();
+        role = in.readLong();
         address = in.readString();
     }
 
@@ -70,7 +71,7 @@ public class User implements Parcelable
         }
         return true;
     }
-    public static boolean validateRole(int role)
+    public static boolean validateRole(long role)
     {
         if(role < 0 || role > 2)
         {
@@ -79,12 +80,18 @@ public class User implements Parcelable
         return true;
     }
 
+    public void setUserID(long userID)
+    {
+        this.userID = userID;
+    }
+
+    public long getUserID(){return userID;}
     public String getFirstName(){return firstName;}
     public String getLastName(){return lastName;}
     public String getEmail(){return email;}
     public String getPassword(){return password;}
     public String getphoneNumber(){return phoneNumber;}
-    public int getRole(){return role;}
+    public long getRole(){return role;}
     public String getAddress(){return address;}
 
     @Override
@@ -99,7 +106,7 @@ public class User implements Parcelable
         dest.writeString(password);
         dest.writeString(email);
         dest.writeString(phoneNumber);
-        dest.writeInt(role);
+        dest.writeLong(role);
         dest.writeString(address);
     }
 }

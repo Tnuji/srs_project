@@ -12,33 +12,43 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".VendorService"
+            android:name=".VendorHomepage"
             android:exported="false" />
         <activity
-            android:name=".VendorServices"
+            android:name=".Confirmation"
             android:exported="false" />
         <activity
-            android:name=".testbottomnav"
-            android:exported="false"
-            android:label="@string/title_activity_testbottomnav"
-            android:theme="@style/Theme.MyApplication" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".Payment"
             android:exported="false" />
         <activity
-            android:name=".registration.VendorOrCustomer"
+            android:name=".VendorInformation"
+            android:exported="false" />
+        <activity
+            android:name=".Homepage"
+            android:exported="false" />
+        <activity
+            android:name=".registration.VendorService"
             android:exported="false" />
         <activity
             android:name=".registration.VendorRegistration"
             android:exported="false" />
         <activity
+            android:name=".registration.VendorOrCustomer"
+            android:exported="false" />
+        <activity
+            android:name=".ListVendors"
+            android:exported="false" />
+        <activity
             android:name=".registration.CustomerRegistration"
             android:exported="false" />
+        <!--
+ Pay Button
         <activity
             android:name=".UserHomePage"
             android:exported="false" />
+        -->
         <activity
-            android:name=".Homepage"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

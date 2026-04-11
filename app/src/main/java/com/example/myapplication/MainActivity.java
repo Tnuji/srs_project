@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.registration.VendorOrCustomer;
+import com.example.myapplication.users.User;
+import com.example.myapplication.users.Vendor;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,13 +25,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.customer_registration), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.login_page), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        DBhelper db = new DBhelper(this);
+        DBhelper db = new DBhelper(this);;
         /*if (!db.userExists("testuser@gmail.com", "1234")) {
             db.insertUser("testuser@gmail.com", "1234");
         }*/
@@ -43,19 +45,29 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(v ->
         {
 
-            String username = emailEditText.getText().toString().trim();
+            String email = emailEditText.getText().toString().trim();
             String password = passwordEditText.getText().toString().trim();
 
-            if (db.userExists(username,password)) {
-                // ✅ Login success → go to next activity
+            User user = db.getUser(email, password);
+            if (user != null) {
+                // login success
+                if (user.getRole() == 2) {
 
-                Intent intent = new Intent(MainActivity.this, UserHomePage.class);
-                intent.putExtra("username", username); // pass username
-                startActivity(intent);
+                    Vendor loginVendor = db.getVendorFromUser(user);
+                    //Toast.makeText(this, "User ID: " + loginVendor.getUserID(), Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(MainActivity.this, VendorHomepage.class);
+                    intent.putExtra("vendor", loginVendor);
+                    intent.putExtra("id", loginVendor.getUserID());
+                    startActivity(intent);
+                }else {
 
+                    /*Intent intent = new Intent(MainActivity.this, Homepage.class);
+                    intent.putExtra("user", user);
+                    startActivity(intent);*/
+                }
             } else {
-                // ❌ Login failed
-                Toast.makeText(MainActivity.this, "Invalid login", Toast.LENGTH_SHORT).show();
+                // login failed
+                Toast.makeText(this, "Invalid credentials", Toast.LENGTH_SHORT).show();
             }
 
         });

@@ -1,4 +1,4 @@
-package com.example.myapplication;
+/*package com.example.myapplication;
 
 import android.os.Bundle;
 import android.widget.TextView;
@@ -18,7 +18,7 @@ public class UserHomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_user_home_page);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.customer_registration), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.user_home_page), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
@@ -27,9 +27,9 @@ public class UserHomePage extends AppCompatActivity {
         TextView welcomeText = findViewById(R.id.welcomeText);
 
 // Get user from the intent
-        User user = getIntent().getParcelableExtra("user");
+       // User user = getIntent().getParcelableExtra("user");
 
 // Set text
         welcomeText.setText("Hello " + user.getFirstName());
     }
-}
+}*/
