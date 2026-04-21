@@ -20,14 +20,14 @@ import java.util.List;
 
 public class DBhelper extends SQLiteOpenHelper //Sqlite must be a class and you must extend it.
 {
-    public static final int DATABASE_VERSION = 10;
+    public static final int DATABASE_VERSION = 11;
 
     public DBhelper(Context context) //db helper constructor
     {
         super(context, "srs.db", null, DATABASE_VERSION); //similar to what ive been seeing in databases.
     }
 
-    /* Table's creator, only called once, is an abstract method*/
+    // Table's creator, only called once, is an abstract method
     @Override
     public void onCreate(SQLiteDatabase db) {
         StringBuilder users = new StringBuilder();
@@ -85,6 +85,15 @@ public class DBhelper extends SQLiteOpenHelper //Sqlite must be a class and you 
 
         db.execSQL(ratings.toString());
 
+        StringBuilder forgotPassword = new StringBuilder();
+        forgotPassword.append("CREATE TABLE forgot_password (");
+        forgotPassword.append("user_id INTEGER PRIMARY KEY,");
+        forgotPassword.append("color TEXT,");
+        forgotPassword.append("city TEXT,");
+        forgotPassword.append("FOREIGN KEY(user_id) REFERENCES users(user_id) ON DELETE CASCADE)");
+
+        db.execSQL(forgotPassword.toString());
+
         db.execSQL("INSERT INTO users (role, password, first_name, last_name, email, address, phone) VALUES " +
                 "(1, 'pass123', 'John', 'Doe', 'john@email.com', '123 Main St', 1111111111), " +
                 "(1, 'pass123', 'Jane', 'Smith', 'jane@email.com', '456 Oak St', 2222222222), " +
@@ -136,6 +145,7 @@ public class DBhelper extends SQLiteOpenHelper //Sqlite must be a class and you 
         db.execSQL("DROP TABLE IF EXISTS vendors");
         db.execSQL("DROP TABLE IF EXISTS service_requests");
         db.execSQL("DROP TABLE IF EXISTS ratings");
+        db.execSQL("DROP TABLE IF EXISTS forgot_password");
         onCreate(db);
     }
 
@@ -145,12 +155,12 @@ public class DBhelper extends SQLiteOpenHelper //Sqlite must be a class and you 
 
         ContentValues values = new ContentValues();
         values.put("role", user.getRole());
-        values.put("password", user.getPassword());
-        values.put("first_name", user.getFirstName());
+        values.put("password", user.getPassword().trim());
+        values.put("first_name", user.getFirstName().trim());
         values.put("last_name", user.getLastName());
-        values.put("email", user.getEmail());
+        values.put("email", user.getEmail().toLowerCase().trim());
         values.put("address", user.getAddress());
-        values.put("phone", user.getphoneNumber());
+        values.put("phone", user.getphoneNumber().trim());
 
         return db.insert("users", null, values);
     }
@@ -167,9 +177,9 @@ public class DBhelper extends SQLiteOpenHelper //Sqlite must be a class and you 
 
                 ContentValues values = new ContentValues();
                 values.put("user_id", vendor.getUserID());
-                values.put("business_name", vendor.getBusiness_name());
+                values.put("business_name", vendor.getBusiness_name().trim());
                 values.put("description", vendor.getDescription());
-                values.put("service", service);
+                values.put("service", service.trim());
                 values.put("service_price", services.get(service));
 
                 db.insert("vendors", null, values);
@@ -199,7 +209,7 @@ public class DBhelper extends SQLiteOpenHelper //Sqlite must be a class and you 
 
         Cursor cursor = db.rawQuery(
                 "SELECT * FROM users WHERE email = ? AND password = ?",
-                new String[]{email, password}
+                new String[]{email.toLowerCase().trim(), password.trim()}
         );
 
         if (cursor.moveToFirst()) {
@@ -320,6 +330,7 @@ public class DBhelper extends SQLiteOpenHelper //Sqlite must be a class and you 
                 String businessName = cursor.getString(cursor.getColumnIndexOrThrow("business_name"));
                 String phoneNumber = getPhoneByUserId(userId);
                 String address = getAddressByUserId(userId);
+                //still gotta add the description lol
                 String description = cursor.getString(cursor.getColumnIndexOrThrow("description"));
                 String serviceName = cursor.getString(cursor.getColumnIndexOrThrow("service"));
                 double price = cursor.getDouble(cursor.getColumnIndexOrThrow("service_price"));
@@ -575,5 +586,81 @@ public class DBhelper extends SQLiteOpenHelper //Sqlite must be a class and you 
         db.close();
 
         return String.format("%.1f", average);
+    }
+
+    // forget password stuff
+
+    public boolean addForgotPasswordInfo(int userId, String color, String city)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("user_id", userId);
+        values.put("color", color.trim().toLowerCase());
+        values.put("city", city.trim().toLowerCase());
+
+        long result = db.insert("forgot_password", null, values);
+
+        return result != -1;
+    }
+
+    public HashMap<String, String> getForgotPasswordInfo(int userId)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(
+                "SELECT color, city FROM forgot_password WHERE user_id = ?",
+                new String[]{String.valueOf(userId)}
+        );
+
+        HashMap<String, String> info = new HashMap<>();
+
+        if (cursor.moveToFirst())
+        {
+            info.put("color", cursor.getString(0));
+            info.put("city", cursor.getString(1));
+        }
+
+        cursor.close();
+        return info;
+    }
+
+    //honestly should have had this function earlier lmao
+    public int getUserIdByEmail(String email)
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(
+                "SELECT user_id FROM users WHERE email = ?",
+                new String[]{email.trim().toLowerCase()}
+        );
+
+        int userId = -1;
+
+        if (cursor.moveToFirst())
+        {
+            userId = cursor.getInt(0);
+        }
+
+        cursor.close();
+        return userId;
+    }
+
+    //changing the password
+    public boolean updatePassword(int userId, String newPassword)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put("password", newPassword);
+
+        int rows = db.update(
+                "users",
+                values,
+                "user_id = ?",
+                new String[]{String.valueOf(userId)}
+        );
+
+        return rows > 0;
     }
 }

@@ -61,7 +61,7 @@ public class VendorInformation extends AppCompatActivity {
             User customer = getIntent().getParcelableExtra("customer");
             customer.setUserID(getIntent().getLongExtra("customerId", -1));
 
-            Toast.makeText(this, "User ID: " + customer.getUserID(), Toast.LENGTH_LONG).show();
+           // Toast.makeText(this, "User ID: " + customer.getUserID(), Toast.LENGTH_LONG).show();
 
             String service = getIntent().getStringExtra("service");
             // setting all the fields to the views in the xml
@@ -84,7 +84,7 @@ public class VendorInformation extends AppCompatActivity {
             LinearLayout servicesContainer = findViewById(R.id.servicesContainer);
             HashMap<String, Double> services = db.getVendorServices((int)vendor.getUserID());
 
-            Toast.makeText(this, "User ID: " + services.size(), Toast.LENGTH_LONG).show();
+            //Toast.makeText(this, "User ID: " + services.size(), Toast.LENGTH_LONG).show();
             for (Map.Entry<String, Double> entry : services.entrySet()) {
                 String serviceName = entry.getKey();
                 Double price = entry.getValue();
@@ -145,7 +145,7 @@ public class VendorInformation extends AppCompatActivity {
 
             addRatingBtn.setOnClickListener(v -> {
 
-                Toast.makeText(this, "Button clicked", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "Button clicked", Toast.LENGTH_SHORT).show();
                 View dialogView = getLayoutInflater().inflate(R.layout.dialog_add_review, null);
 
                 AlertDialog dialog = new AlertDialog.Builder(this)

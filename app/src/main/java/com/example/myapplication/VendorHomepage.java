@@ -42,7 +42,7 @@ public class VendorHomepage extends AppCompatActivity {
         LayoutInflater inflater = LayoutInflater.from(this);
 
         List<ServiceRequest> requests = db.getRequestsByUserId((int)logged_vendor.getUserID());
-        Toast.makeText(this, "User ID: " + logged_vendor.getUserID(), Toast.LENGTH_LONG).show();
+        //Toast.makeText(this, "User ID: " + logged_vendor.getUserID(), Toast.LENGTH_LONG).show();
         for (ServiceRequest r : requests) {
 
             View card = inflater.inflate(R.layout.customer_request, container, false);

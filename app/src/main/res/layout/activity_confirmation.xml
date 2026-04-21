@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:padding="24dp">
 
-    <!-- Success Icon -->
     <ImageView
         android:id="@+id/imgSuccess"
         android:layout_width="100dp"
@@ -18,7 +17,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.3" />
 
-    <!-- Title -->
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
@@ -31,7 +29,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imgSuccess" />
 
-    <!-- Subtitle -->
     <TextView
         android:id="@+id/tvSubtitle"
         android:layout_width="wrap_content"
@@ -43,7 +40,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
-    <!-- Go Home Button -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnHome"
         android:layout_width="0dp"
@@ -51,6 +47,7 @@
         android:layout_marginBottom="32dp"
         android:padding="14dp"
         android:text="Go Home"
+        android:backgroundTint="#1565c0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

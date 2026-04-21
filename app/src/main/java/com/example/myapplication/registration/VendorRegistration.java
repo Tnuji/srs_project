@@ -32,6 +32,9 @@ public class VendorRegistration extends AppCompatActivity {
     TextInputEditText vendor_phone_TI;
     TextInputLayout vendor_address_l;
     TextInputEditText vendor_address_TI;
+
+    TextInputLayout color_layout; TextInputEditText color_EditText;
+    TextInputLayout city_layout; TextInputEditText city_EditText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +57,8 @@ public class VendorRegistration extends AppCompatActivity {
         vendor_phone_TI = findViewById(R.id.vendor_phone_TextInput);
         vendor_address_l = findViewById(R.id.vendor_address_layout);
         vendor_address_TI = findViewById(R.id.vendor_address_TextInput);
+        color_layout = findViewById(R.id.vendor_color_layout); color_EditText = findViewById(R.id.vendor_color_EditText);
+        city_layout = findViewById(R.id.vendor_city_layout); city_EditText  = findViewById(R.id.vendor_city_EditText);
 
 
         //these validate the users input as they go from one text box to another
@@ -62,6 +67,8 @@ public class VendorRegistration extends AppCompatActivity {
         attachValidation(vendor_password_TI, vendor_password_l, User::validateName, "Invalid Password");
         attachValidation(vendor_phone_TI, vendor_phone_l, User::validateName, "Invalid Phone Number");
         attachValidation(vendor_address_TI,vendor_address_l,User::validateNumber,"Invalid Address");
+        attachValidation(color_EditText,color_layout,User::validateNumber,"Favorite Color Required");
+        attachValidation(city_EditText,city_layout,User::validateNumber,"Born City Required");
 
         Button register = findViewById(R.id.register_next_vendor);
         findViewById(R.id.vendor_register_back).setOnClickListener(v -> finish());
@@ -72,14 +79,18 @@ public class VendorRegistration extends AppCompatActivity {
             boolean validEmail = finalValidation(vendor_password_TI, vendor_password_l, User::validateName, "Invalid Password");
             boolean validPassword = finalValidation(vendor_phone_TI, vendor_phone_l, User::validateName, "Invalid Phone Number");
             boolean validNumber = finalValidation(vendor_address_TI, vendor_address_l, User::validateNumber, "Invalid Address");
+            boolean validColor = finalValidation(color_EditText,color_layout,User::validateNumber,"Favorite Color Required");
+            boolean validCity = finalValidation(city_EditText,city_layout,User::validateNumber,"Born City Required");
 
-            if (validFirstName && validLastName && validEmail && validPassword && validNumber)
+            if (validFirstName && validLastName && validEmail && validPassword && validNumber && validColor && validCity)
             {
                 User activeUser = new User(vendor_name_TI.getText().toString(),null,
                         vendor_email_TI.getText().toString(), vendor_password_TI.getText().toString(),
                         2,vendor_phone_TI.getText().toString(),vendor_phone_TI.getText().toString());
                 Intent intent = new Intent(VendorRegistration.this, VendorService.class);
                 intent.putExtra("user", activeUser);
+                intent.putExtra("color", color_EditText.getText().toString().trim());
+                intent.putExtra("city", city_EditText.getText().toString().trim());
                 startActivity(intent);
             }
         });

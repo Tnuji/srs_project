@@ -45,7 +45,7 @@ public class CustomerAccount extends AppCompatActivity {
 
         if (user != null) {
             userName.setText(user.getFirstName() + " " + user.getLastName());
-            userEmail.setText(user.getEmail());
+            userEmail.setText(user.getEmail().toLowerCase());
             userPhone.setText(user.getphoneNumber());
             userAddress.setText(user.getAddress());
 

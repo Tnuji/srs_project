@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="#F7F8FA">
 
-    <!-- Top Section -->
     <LinearLayout
         android:id="@+id/profileHeader"
         android:layout_width="0dp"
@@ -18,7 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <!-- Circular Avatar -->
         <ImageView
             android:layout_width="90dp"
             android:layout_height="90dp"
@@ -27,7 +25,6 @@
             android:scaleType="centerInside"
             android:src="@android:drawable/ic_menu_myplaces" />
 
-        <!-- Name -->
         <TextView
             android:id="@+id/user_name"
             android:layout_width="wrap_content"
@@ -37,7 +34,6 @@
             android:textSize="22sp"
             android:textStyle="bold" />
 
-        <!-- Email -->
         <TextView
             android:id="@+id/user_email"
             android:layout_width="wrap_content"
@@ -49,7 +45,6 @@
 
     </LinearLayout>
 
-    <!-- Info Card -->
     <androidx.cardview.widget.CardView
         android:id="@+id/userInfoCard"
         android:layout_width="0dp"
@@ -67,7 +62,6 @@
             android:orientation="vertical"
             android:padding="20dp">
 
-            <!-- Phone -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -84,13 +78,11 @@
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
-            <!-- Divider -->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="#EEE" />
 
-            <!-- Address -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -106,14 +98,12 @@
                 android:text="123 Main Street"
                 android:textSize="16sp"
                 android:textStyle="bold" />
-            <!-- Divider -->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="16dp"
                 android:background="#EEE" />
 
-            <!-- Password -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -134,7 +124,6 @@
 
     </androidx.cardview.widget.CardView>
 
-    <!-- Logout Button (subtle, modern) -->
     <TextView
         android:id="@+id/btnLogout"
         android:layout_width="wrap_content"

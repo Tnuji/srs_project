@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         EditText passwordEditText = findViewById(R.id.login_password);
         Button loginButton = findViewById(R.id.login_button);
         TextView registrationText = findViewById(R.id.new_user_text_button);
+        TextView forgot_password = findViewById(R.id.forgot_pass);
 
         loginButton.setOnClickListener(v ->
         {
@@ -78,6 +79,11 @@ public class MainActivity extends AppCompatActivity {
         registrationText.setOnClickListener(v ->
         {
             Intent intent = new Intent(MainActivity.this, VendorOrCustomer.class);
+            startActivity(intent);
+        });
+
+        forgot_password.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, ForgotPassword.class);
             startActivity(intent);
         });
 

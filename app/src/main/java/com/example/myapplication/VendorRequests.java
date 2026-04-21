@@ -45,7 +45,12 @@ public class VendorRequests extends AppCompatActivity {
         LayoutInflater inflater = LayoutInflater.from(this);
 
         List<ServiceRequest> requests = db.getRequestsByUserId((int)vendor.getUserID());
-        Toast.makeText(this, "User ID: " + id, Toast.LENGTH_LONG).show();
+        if(requests.isEmpty())
+        {
+            TextView empty = findViewById(R.id.empty_orders_vendor);
+            empty.setVisibility(View.VISIBLE);
+        }
+        //Toast.makeText(this, "User ID: " + id, Toast.LENGTH_LONG).show();
         for (ServiceRequest r : requests) {
 
             View card = inflater.inflate(R.layout.user_service_request, container, false);

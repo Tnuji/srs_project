@@ -32,6 +32,8 @@ public class CustomerRegistration extends AppCompatActivity {
     TextInputEditText password_EditText;
     TextInputLayout phoneNumber_layout;
     TextInputEditText phoneNumber_EditText;
+    TextInputLayout color_layout; TextInputEditText color_EditText;
+    TextInputLayout city_layout; TextInputEditText city_EditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,10 @@ public class CustomerRegistration extends AppCompatActivity {
         password_EditText = findViewById(R.id.customer_password_EditText);
         phoneNumber_layout = findViewById(R.id.customer_number_layout);
         phoneNumber_EditText = findViewById(R.id.customer_number_EditText);
+        color_layout = findViewById(R.id.customer_favorite_color_layout);
+        color_EditText = findViewById(R.id.customer_favorite_color_EditText);
+        city_layout = findViewById(R.id.customer_born_city_layout);
+        city_EditText = findViewById(R.id.customer_born_city_EditText);
 
         //these validate the users input as they go from one text box to another
         attachValidation(firstName_EditText, firstName_layout, User::validateName, "Invalid First name");
@@ -68,6 +74,8 @@ public class CustomerRegistration extends AppCompatActivity {
         attachValidation(email_EditText, email_layout, User::validateEmail, "Invalid Email");
         attachValidation(password_EditText, password_layout, User::validateName, "Invalid Password");
         attachValidation(phoneNumber_EditText,phoneNumber_layout,User::validateNumber,"Invalid Phone Number");
+        attachValidation(color_EditText, color_layout, User::validateName, "Please input your favorite color");
+        attachValidation(city_EditText, city_layout, User::validateName, "Please input your born city");
 
         Button register = findViewById(R.id.customer_register_button);
         findViewById(R.id.customer_register_back).setOnClickListener(v -> finish());
@@ -79,8 +87,10 @@ public class CustomerRegistration extends AppCompatActivity {
             boolean validEmail = finalValidation(email_EditText, email_layout, User::validateEmail, "Invalid Email");
             boolean validPassword = finalValidation(password_EditText, password_layout, User::validateName, "Invalid Password");
             boolean validNumber = finalValidation(phoneNumber_EditText, phoneNumber_layout, User::validateNumber, "Invalid Phone Number");
+            boolean validColor = finalValidation(color_EditText, color_layout, User::validateName, "Please input your favorite color");
+            boolean validCity = finalValidation(city_EditText, city_layout, User::validateName, "Please input your born city");
 
-            if (validFirstName && validLastName && validEmail && validPassword && validNumber)
+            if (validFirstName && validLastName && validEmail && validPassword && validNumber && validColor && validCity)
             {
                 DBhelper db = new DBhelper(this);
 
@@ -92,6 +102,8 @@ public class CustomerRegistration extends AppCompatActivity {
                 long userid = db.addUser(activeUser);
                 if (userid != -1) {
                     activeUser.setUserID(userid);
+                    db.addForgotPasswordInfo((int)activeUser.getUserID(), color_EditText.getText().toString().trim(), city_EditText.getText().toString().trim());
+                    intent.putExtra("id", activeUser.getUserID());
                     startActivity(intent);
                 }
             }

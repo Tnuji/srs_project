@@ -46,7 +46,12 @@ public class MyOrders extends AppCompatActivity {
         BottomNavHelper.setupCustomerBottomNav(this,homepage_bottom,customer,id,R.id.requests_icon);
 
         List<ServiceRequest> requests = db.getRequestsByUserId((int)customer.getUserID());
-        Toast.makeText(this, "User ID: " + id, Toast.LENGTH_LONG).show();
+        if(requests.isEmpty())
+        {
+            TextView empty = findViewById(R.id.empty_orders);
+            empty.setVisibility(View.VISIBLE);
+        }
+       // Toast.makeText(this, "User ID: " + id, Toast.LENGTH_LONG).show();
         for (ServiceRequest r : requests) {
 
             View card = inflater.inflate(R.layout.user_service_request, container, false);

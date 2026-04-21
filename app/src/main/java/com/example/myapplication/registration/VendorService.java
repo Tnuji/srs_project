@@ -47,6 +47,8 @@ public class VendorService extends AppCompatActivity {
     DBhelper db = new DBhelper(this);
     Button register;
     HashMap<String, Double> services;
+    String favorite_color;
+    String born_city;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +62,8 @@ public class VendorService extends AppCompatActivity {
         });
 
         User user = getIntent().getParcelableExtra("user");
+        favorite_color = getIntent().getStringExtra("color");
+        born_city = getIntent().getStringExtra("city");
 
         //these are the variables that control the switches       // These are the variables that control the price texts
         appliances_switch = findViewById(R.id.appliances_switch);
@@ -122,7 +126,7 @@ public class VendorService extends AppCompatActivity {
                 Vendor newVendor = new Vendor(user.getEmail(), user.getPassword(), user.getphoneNumber(), user.getAddress(), user.getFirstName(), services);
                 //this is where we set the id >:)
                 newVendor.setUserID(db.getUser(user.getEmail(),user.getPassword()).getUserID());
-
+                db.addForgotPasswordInfo((int)newVendor.getUserID(), favorite_color, born_city);
 
                 db.addVendor(newVendor);
                 Intent intent = new Intent(VendorService.this, VendorHomepage.class);

@@ -5,9 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- 🔙 Back Arrow -->
-
-    <!-- Main Content -->
     <ImageButton
         android:id="@+id/payment_back"
         android:layout_width="48dp"
@@ -23,14 +20,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="48dp"
-        android:padding="16dp"> <!-- pushes content below arrow -->
+        android:padding="16dp"> <!-- this pushes the stuff down past the arrow pretty cool -->
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Title -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -39,7 +35,6 @@
                 android:textSize="28sp"
                 android:textStyle="bold" />
 
-            <!-- Card Number -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/card_number_layout"
                 android:layout_width="match_parent"
@@ -54,7 +49,6 @@
                     android:inputType="number" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Name -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/name_on_card_layout"
                 android:layout_width="match_parent"
@@ -69,7 +63,6 @@
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- Exp + CVV -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -110,7 +103,6 @@
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
-            <!-- Address Section -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -146,7 +138,6 @@
                     android:layout_height="wrap_content" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- State + Zip -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -187,7 +178,6 @@
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
-            <!-- Service Date & Time -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/date_time_layout"
                 android:layout_width="match_parent"
@@ -204,13 +194,13 @@
                     android:clickable="true"
                     android:inputType="none" />
             </com.google.android.material.textfield.TextInputLayout>
-            <!-- Pay Button -->
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnPay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:padding="14dp"
+                android:backgroundTint="#1565c0"
                 android:text="Pay Now" />
 
         </LinearLayout>
