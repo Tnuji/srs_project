@@ -55,10 +55,10 @@ public class ListVendors extends AppCompatActivity {
             ImageView image = card.findViewById(R.id.vendor_image);
 
             name.setText(v.getBusiness_name());
-            desc.setText(v.getEmail());
+            desc.setText(" " + v.getEmail());
 
             Double priceValue = v.getServices().get(service);
-            price.setText(priceValue != null ? "$" + priceValue + " ": "N/A");
+            price.setText(priceValue != null ? "$" + priceValue : "N/A");
 
             String vendor_rating = db.getAverageRatingFormatted((int)v.getUserID());
 

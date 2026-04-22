@@ -20,7 +20,7 @@ import java.util.List;
 
 public class DBhelper extends SQLiteOpenHelper //Sqlite must be a class and you must extend it.
 {
-    public static final int DATABASE_VERSION = 11;
+    public static final int DATABASE_VERSION = 12;
 
     public DBhelper(Context context) //db helper constructor
     {
@@ -98,42 +98,69 @@ public class DBhelper extends SQLiteOpenHelper //Sqlite must be a class and you 
                 "(1, 'pass123', 'John', 'Doe', 'john@email.com', '123 Main St', 1111111111), " +
                 "(1, 'pass123', 'Jane', 'Smith', 'jane@email.com', '456 Oak St', 2222222222), " +
                 "(2, 'pass123', 'Mike', 'Johnson', 'mike@email.com', '789 Pine St', 3333333333), " +
-                "(2, 'pass123', 'Sarah', 'Brown', 'sarah@email.com', '101 Elm St', 4444444444)");
+                "(2, 'pass123', 'Sarah', 'Brown', 'sarah@email.com', '101 Elm St', 4444444444), " +
+                "(1, 'pass123', 'Alex', 'Lee', 'alex@email.com', '202 Cedar St', 5555555555), " +
+                "(2, 'pass123', 'Priya', 'Patel', 'priya@email.com', '303 Maple St', 6666666666)");
 
+// =======================
+// VENDORS TABLE
+// =======================
         db.execSQL("INSERT INTO vendors (user_id, business_name, description, service, service_price) VALUES " +
-                "(3, 'Mike Appliances Co', 'Fast appliance repairs', 'appliances', 80.0), " +
-                "(3, 'Mike Appliances Co', 'Fast appliance repairs', 'electrical', 60.0), " +
-                "(4, 'Sarah Home Services', 'Reliable home fixes', 'appliances', 90.0), " +
-                "(4, 'Sarah Home Services', 'Reliable home fixes', 'cleaning', 50.0), " +
-                "(3, 'Mike Appliances Co', 'Fast appliance repairs', 'plumbing', 70.0)");
+                "(3, 'Mike Fix-It Services', 'Reliable home repair specialist', 'Appliances', 85.0), " +
+                "(3, 'Mike Fix-It Services', 'Reliable home repair specialist', 'Electrical', 65.0), " +
+                "(3, 'Mike Fix-It Services', 'Reliable home repair specialist', 'Plumbing', 75.0), " +
+
+                "(4, 'Sarah Clean & Safe', 'Trusted cleaning and pest control services', 'Home Cleaning', 55.0), " +
+                "(4, 'Sarah Clean & Safe', 'Trusted cleaning and pest control services', 'Pest Control', 90.0), " +
+
+                "(6, 'Priya Tech Tutors', 'Tech help and academic tutoring', 'Computer Repair', 80.0), " +
+                "(6, 'Priya Tech Tutors', 'Tech help and academic tutoring', 'Tutoring', 40.0)");
+
+// =======================
+// SERVICE REQUESTS
+// DATE FORMAT: YYYY-MM-DD HH:mm (24-hour / military time)
+// =======================
         db.execSQL("INSERT INTO service_requests (service, date, price, status, vendor_id, customer_id, accepted, address) VALUES " +
 
-                // 🟡 Pending requests (not accepted yet)
-                "('appliances', '2026-04-10', 80.0, 0, 3, 1, 0, '123 Main St'), " +
-                "('electrical', '2026-04-11', 60.0, 0, 3, 2, 0, '456 Oak St'), " +
+                "( 'Appliances', '2026-04-10 09:30', 85.0, 0, 3, 1, 0, '123 Main St'), " +
+                "( 'Electrical', '2026-04-11 14:15', 65.0, 1, 3, 2, 1, '456 Oak St'), " +
+                "( 'Plumbing', '2026-04-12 18:45', 75.0, 1, 3, 5, 1, '202 Cedar St'), " +
 
-                // 🟢 Accepted requests (completed/active)
-                "('plumbing', '2026-04-05', 70.0, 1, 3, 1, 1, '123 Main St'), " +
-                "('appliances', '2026-04-06', 80.0, 1, 3, 2, 1, '456 Oak St'), " +
+                "( 'Home Cleaning', '2026-04-13 10:00', 55.0, 0, 4, 1, 0, '123 Main St'), " +
+                "( 'Pest Control', '2026-04-14 16:30', 90.0, 1, 4, 2, 1, '456 Oak St'), " +
 
-                // 🟡 More pending (for UI variety)
-                "('cleaning', '2026-04-12', 50.0, 0, 3, 1, 0, '123 Main St'), " +
-                "('electrical', '2026-04-13', 60.0, 0, 3, 2, 0, '456 Oak St')");
+                "( 'Computer Repair', '2026-04-15 13:00', 80.0, 0, 6, 5, 0, '202 Cedar St'), " +
+                "( 'Tutoring', '2026-04-16 17:20', 40.0, 1, 6, 1, 1, '123 Main St'), " +
+
+                "( 'Appliances', '2026-04-17 11:10', 85.0, 0, 3, 2, 0, '456 Oak St'), " +
+                "( 'Home Cleaning', '2026-04-18 15:50', 55.0, 1, 4, 5, 1, '202 Cedar St')");
+
+// =======================
+// RATINGS TABLE
+// =======================
         db.execSQL("INSERT INTO ratings (stars, comment, rating_date, customer_id, vendor_id) VALUES " +
-                "(5.0, 'Amazing service, super fast!', '2026-04-10', 1, 3), " +
-                "(4.5, 'Very good work, would recommend.', '2026-04-09', 2, 3), " +
-                "(4.0, 'Fixed my appliance quickly.', '2026-04-08', 1, 4), " +
-                "(3.5, 'Decent service but a bit slow.', '2026-04-07', 2, 4), " +
-                "(5.0, 'Excellent experience overall!', '2026-04-06', 1, 3), " +
-                "(2.5, 'Not great, had to call again.', '2026-04-05', 2, 4)");
-        db.execSQL("INSERT INTO ratings (stars, comment, rating_date, customer_id, vendor_id) VALUES " +
-                "(5.0, 'Absolutely perfect service. Fixed everything in one visit!', '2026-04-11', 1, 3), " +
-                "(4.5, 'Really professional and quick response time.', '2026-04-10', 2, 3), " +
-                "(4.0, 'Good work overall, slight delay but job was solid.', '2026-04-09', 1, 3), " +
-                "(5.0, 'Best repair experience I’ve had so far!', '2026-04-08', 2, 3), " +
-                "(4.8, 'Very knowledgeable and friendly.', '2026-04-07', 1, 3), " +
-                "(4.2, 'Solved the issue quickly, price was fair.', '2026-04-06', 2, 3), " +
-                "(5.0, 'Highly recommend Mike! Excellent service.', '2026-04-05', 1, 3)");
+
+                "(5.0, 'Mike fixed my stove perfectly!', '2026-04-10 10:45', 1, 3), " +
+                "(4.5, 'Electrical issue solved quickly', '2026-04-11 15:30', 2, 3), " +
+                "(4.0, 'Good plumbing work', '2026-04-12 19:10', 5, 3), " +
+
+                "(5.0, 'House is spotless, great cleaning!', '2026-04-13 12:00', 1, 4), " +
+                "(4.2, 'Pest issue handled well', '2026-04-14 17:45', 2, 4), " +
+
+                "(5.0, 'Fixed my laptop in one day!', '2026-04-15 14:25', 5, 6), " +
+                "(4.8, 'Tutoring really helped my exam prep', '2026-04-16 18:10', 1, 6), " +
+                "(4.5, 'Very knowledgeable and patient', '2026-04-17 16:05', 2, 6)");
+
+// =======================
+// FORGOT PASSWORD TABLE
+// (Alex Lee intentionally left out)
+// =======================
+        db.execSQL("INSERT INTO forgot_password (user_id, color, city) VALUES " +
+                "(1, 'Blue', 'Dallas'), " +
+                "(2, 'Green', 'Austin'), " +
+                "(3, 'Red', 'Houston'), " +
+                "(4, 'Yellow', 'Fort Worth'), " +
+                "(6, 'Purple', 'Plano')");
     }
 
     /*Still unsure about this method, seems to be just about making certain types of changes

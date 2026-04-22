@@ -46,6 +46,7 @@ public class ForgotPassword extends AppCompatActivity {
         });
         dbHelper = new DBhelper(this);
 
+        findViewById(R.id.forget_back).setOnClickListener(v -> finish());
         emailEditText = findViewById(R.id.email_edit_text);
         questionSpinner = findViewById(R.id.question_spinner);
         answerEditText = findViewById(R.id.answer_edit_text);
